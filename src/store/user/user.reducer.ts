@@ -9,8 +9,6 @@ import {
 } from "./user.action";
 
 import { UserData } from "../../utils/firebase/firebase.utils";
-import { act } from "@testing-library/react";
-
 export type UserState = {
   readonly currentUser: UserData | null;
   readonly isLoading: boolean;
@@ -23,7 +21,10 @@ const INITIAL_STATE: UserState = {
   error: null,
 };
 
-export const userReducer = (state = INITIAL_STATE, action) => {
+export const userReducer = (
+  state = INITIAL_STATE,
+  action = {} as AnyAction
+) => {
   if (signInSuccess.match(action)) {
     return { ...state, currentUser: action.payload };
   }
